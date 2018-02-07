@@ -1,5 +1,5 @@
 # DocFlux Spreadsheets
-[![npm](https://img.shields.io/npm/v/@harvest-profit/doc-flux-spreadsheets.svg)](https://www.npmjs.com/package/@harvest-profit/doc-flux-spreadsheets)  [![Build Status](https://travis-ci.org/HarvestProfit/DocFlux-Spreadsheets.svg?branch=master)](https://travis-ci.org/HarvestProfit/DocFlux-Spreadsheets)  [![npm](https://img.shields.io/npm/l/@harvest-profit/doc-flux-spreadsheets.svg)](https://github.com/HarvestProfit/DocFlux-Spreadsheets/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/v/@harvest-profit/doc-flux-spreadsheets.svg)](https://www.npmjs.com/package/@harvest-profit/doc-flux-spreadsheets)  [![Build Status](https://travis-ci.org/HarvestProfit/DocFlux-Spreadsheets.svg?branch=master)](https://travis-ci.org/HarvestProfit/DocFlux-Spreadsheets) [![Coverage Status](https://coveralls.io/repos/github/HarvestProfit/DocFlux-Spreadsheets/badge.svg?branch=master)](https://coveralls.io/github/HarvestProfit/DocFlux-Spreadsheets?branch=master) [![npm](https://img.shields.io/npm/l/@harvest-profit/doc-flux-spreadsheets.svg)](https://github.com/HarvestProfit/DocFlux-Spreadsheets/blob/master/LICENSE)
 
 Allows you to create XLSX spreadsheets using [DocFlux](https://github.com/HarvestProfit/DocFlux).
 
