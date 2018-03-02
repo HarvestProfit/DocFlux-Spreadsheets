@@ -4,6 +4,11 @@ import { DocFlux } from '@harvest-profit/doc-flux';
 
 import Parser from '../src/Parser';
 
+// eslint-disable-next-line no-console
+console.error = jest.fn((error) => {
+  throw new Error(error);
+});
+
 describe('Table', () => {
   describe('transform', () => {
     it('should create a document from a table', () => {
@@ -125,6 +130,88 @@ describe('Table', () => {
       expect(newWorkbook.SheetNames[1]).toBe('Table 2');
       expect(newWorkbook.Sheets['Table 2'].A1.v).toBe('h2');
       expect(newWorkbook.Sheets['Table 2'].A2.v).toBe('d2');
+    });
+
+    it('should create a document with an invalid name and correct it', () => {
+      const workbook = XLSX.utils.book_new();
+      const component = DocFlux.render(
+        <table>
+          <tname>*Table/One [small]?</tname>
+          <thead>
+            <th>h1</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>d1</td>
+            </tr>
+          </tbody>
+        </table>,
+        Parser,
+      );
+
+      const newWorkbook = DocFlux.transform(component, workbook);
+      expect(newWorkbook.SheetNames[0]).toBe('Table-One (small)');
+      expect(newWorkbook.Sheets['Table-One (small)'].A1.v).toBe('h1');
+    });
+
+    it('should create a document with a number as a value and an empty header', () => {
+      const workbook = XLSX.utils.book_new();
+      const component = DocFlux.render(
+        <table>
+          <tname>Table</tname>
+          <thead>
+            <th />
+          </thead>
+          <tbody>
+            <tr>
+              <td>{1}</td>
+            </tr>
+          </tbody>
+        </table>,
+        Parser,
+      );
+
+      const newWorkbook = DocFlux.transform(component, workbook);
+      expect(newWorkbook.Sheets.Table.A1.v).toBe('');
+      expect(newWorkbook.Sheets.Table.A2.v).toBe('1');
+    });
+
+    it('should create a document with a combination of values', () => {
+      const workbook = XLSX.utils.book_new();
+      const component = DocFlux.render(
+        <table>
+          <tname>{{ name: 'test' }} Table {1}</tname>
+          <thead>
+            <th>
+              {{ t: 1 }}
+              {1}
+              hey
+              {NaN}
+              {null}
+              {undefined}
+            </th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {{ t: 1 }}
+                {1}
+                hey
+                {NaN}
+                {null}
+                {undefined}
+              </td>
+            </tr>
+          </tbody>
+        </table>,
+        Parser,
+      );
+
+      const newWorkbook = DocFlux.transform(component, workbook);
+      const tableName = '(object Object) Table 1';
+      expect(newWorkbook.SheetNames[0]).toBe(tableName);
+      expect(newWorkbook.Sheets[tableName].A1.v).toBe('[object Object]1heyNaNnullundefined');
+      expect(newWorkbook.Sheets[tableName].A2.v).toBe('[object Object]1heyNaNnullundefined');
     });
   });
 });

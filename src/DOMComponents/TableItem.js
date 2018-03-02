@@ -7,15 +7,15 @@ import { DOMComponent } from '@harvest-profit/doc-flux';
  */
 export default class TableItem extends DOMComponent {
   static propTypes = {
-    children: PropTypes.arrayOf(PropTypes.string).isRequired,
+    children: PropTypes.arrayOf(PropTypes.any).isRequired,
   }
 
   static defaultProps = {
-    children: '',
+    children: [''],
   }
 
   render() {
-    return this.props.children.join('');
+    return this.props.children.map(c => `${c}`).join('');
   }
 
   static transform(DOM) {
