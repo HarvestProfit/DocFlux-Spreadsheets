@@ -52,6 +52,12 @@ export default class Table extends DOMComponent {
       .replace(/\]/g, ')')
       .replace(/(\?|\*)/g, '');
 
+    sheetName = cleanSheetName(sheetName);
+
+    if (sheetName.length > 28) {
+      sheetName = sheetName.substring(0, 29);
+    }
+
     const createSheetName = (name, number) => {
       const fullname = `${name} ${number}`;
       if (changedWorkBook.SheetNames.indexOf(fullname) < 0) {
@@ -63,7 +69,7 @@ export default class Table extends DOMComponent {
     if (changedWorkBook.SheetNames.indexOf(sheetName) >= 0) {
       sheetName = createSheetName(sheetName, 2);
     }
-    sheetName = cleanSheetName(sheetName);
+
     const worksheet = XLSX.utils.aoa_to_sheet(table);
 
     changedWorkBook.SheetNames.push(sheetName);

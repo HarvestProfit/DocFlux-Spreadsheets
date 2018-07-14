@@ -154,6 +154,28 @@ describe('Table', () => {
       expect(newWorkbook.Sheets['Table-One (small)'].A1.v).toBe('h1');
     });
 
+    it('should create a document with a longer than 30 char name and correct it', () => {
+      const workbook = XLSX.utils.book_new();
+      const component = DocFlux.render(
+        <table>
+          <tname>*Table/One [small] areallyreallyreallyreallylongname?</tname>
+          <thead>
+            <th>h1</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>d1</td>
+            </tr>
+          </tbody>
+        </table>,
+        Parser,
+      );
+
+      const newWorkbook = DocFlux.transform(component, workbook);
+      expect(newWorkbook.SheetNames[0]).toBe('Table-One (small) areallyreal');
+      expect(newWorkbook.Sheets['Table-One (small) areallyreal'].A1.v).toBe('h1');
+    });
+
     it('should create a document with a number as a value and an empty header', () => {
       const workbook = XLSX.utils.book_new();
       const component = DocFlux.render(
