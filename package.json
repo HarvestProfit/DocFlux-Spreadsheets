@@ -1,6 +1,6 @@
 {
   "name": "@harvest-profit/doc-flux-spreadsheets",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "XLSX Spreadsheets parser for DocFlux",
   "main": "dist/index.js",
   "repository": "https://github.com/HarvestProfit/DocFlux-Spreadsheets",
@@ -63,7 +63,7 @@
     "jsdoc": "^3.5.5"
   },
   "dependencies": {
-    "@harvest-profit/doc-flux": "^1.0.0-alpha.4",
+    "@harvest-profit/doc-flux": "^1.0.0-beta.1",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "save-as": "^0.1.8",
