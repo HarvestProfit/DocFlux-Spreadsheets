@@ -20,14 +20,15 @@ export default class Table extends DOMComponent {
   }
 
   static transform(DOM, workbook) {
-    if (DOM.length < 1) return workbook;
+    const DOMValue = DOM.value;
+    if (DOMValue.length < 1) return workbook;
     const changedWorkBook = { ...workbook };
 
     let table = [];
 
-    const tableHeader = _.find(DOM, comp => comp.ref instanceof TableHeader);
-    const tableBody = _.find(DOM, comp => comp.ref instanceof TableBody);
-    const tableName = _.find(DOM, comp => comp.ref instanceof TableName);
+    const tableHeader = _.find(DOMValue, comp => comp.ref instanceof TableHeader);
+    const tableBody = _.find(DOMValue, comp => comp.ref instanceof TableBody);
+    const tableName = _.find(DOMValue, comp => comp.ref instanceof TableName);
 
     if (tableHeader) {
       table.push(tableHeader.ref.constructor.transform(tableHeader.value));
