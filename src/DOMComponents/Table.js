@@ -6,6 +6,7 @@ import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import TableName from './TableName';
 
+const SHEET_NAME_MAX_LENGTH = 31;
 /**
  * Defines `<table>`
  * @module Table
@@ -54,13 +55,13 @@ export default class Table extends DOMComponent {
       .replace(/(\?|\*)/g, '');
 
     sheetName = cleanSheetName(sheetName);
-
-    if (sheetName.length > 28) {
-      sheetName = sheetName.substring(0, 29);
-    }
+    sheetName = sheetName.substring(0, SHEET_NAME_MAX_LENGTH);
 
     const createSheetName = (name, number) => {
-      const fullname = `${name} ${number}`;
+      const appendName = ` ${number}`;
+      const trimmedActualName = name.substring(0, SHEET_NAME_MAX_LENGTH - appendName.length);
+
+      const fullname = `${trimmedActualName}${appendName}`;
       if (changedWorkBook.SheetNames.indexOf(fullname) < 0) {
         return fullname;
       }

@@ -1,6 +1,6 @@
 {
   "name": "@harvest-profit/doc-flux-spreadsheets",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "XLSX Spreadsheets parser for DocFlux",
   "main": "dist/index.js",
   "repository": "https://github.com/HarvestProfit/DocFlux-Spreadsheets",

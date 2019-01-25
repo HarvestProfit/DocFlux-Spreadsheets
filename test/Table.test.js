@@ -172,8 +172,8 @@ describe('Table', () => {
       );
 
       const newWorkbook = DocFlux.transform(component, workbook);
-      expect(newWorkbook.SheetNames[0]).toBe('Table-One (small) areallyreal');
-      expect(newWorkbook.Sheets['Table-One (small) areallyreal'].A1.v).toBe('h1');
+      expect(newWorkbook.SheetNames[0]).toBe('Table-One (small) areallyreally');
+      expect(newWorkbook.Sheets['Table-One (small) areallyreally'].A1.v).toBe('h1');
     });
 
     it('should create a document with a number as a value and an empty header', () => {
@@ -234,6 +234,40 @@ describe('Table', () => {
       expect(newWorkbook.SheetNames[0]).toBe(tableName);
       expect(newWorkbook.Sheets[tableName].A1.v).toBe('[object Object]1heyNaNnullundefined');
       expect(newWorkbook.Sheets[tableName].A2.v).toBe('[object Object]1heyNaNnullundefined');
+    });
+
+    it('should create a document with many duplicate sheet names', () => {
+      const workbook = XLSX.utils.book_new();
+      const TableComponent = () => {
+        const tables = [];
+        for (let i = 0; i < 30; i += 1) {
+          tables.push(
+            <table>
+              <tname>*Table/One [small] areallyreallyreallyreallylongname?</tname>
+              <thead>
+                <th>h1</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>d1</td>
+                </tr>
+              </tbody>
+            </table>,
+          );
+        }
+        return tables;
+      };
+      const component = DocFlux.render(
+        <div>
+          <TableComponent />
+        </div>,
+        Parser,
+      );
+
+      const newWorkbook = DocFlux.transform(component, workbook);
+      expect(newWorkbook.SheetNames[0]).toBe('Table-One (small) areallyreally');
+      expect(newWorkbook.SheetNames[1]).toBe('Table-One (small) areallyreal 2');
+      expect(newWorkbook.SheetNames[29]).toBe('Table-One (small) areallyrea 30');
     });
   });
 });
