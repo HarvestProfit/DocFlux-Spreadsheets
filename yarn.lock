@@ -738,13 +738,13 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@harvest-profit/doc-flux@^1.0.0-beta.1":
-  version "1.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@harvest-profit/doc-flux/-/doc-flux-1.0.0-beta.1.tgz#424f842adc81029ce231d650b22c0b4e2d7bbb42"
-  integrity sha512-T3uxhdL1uUIIkrtJ2oZuuI3O9j770O/9xFoxtux0eAsRwcbxybyR1fK7YNVpnHcu2/iZZm2Hlgffpb6+/cBYMw==
+"@harvest-profit/doc-flux@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@harvest-profit/doc-flux/-/doc-flux-1.0.0.tgz#6b0eb16adaf31f5724a0b6cd8daf63c128910bb0"
+  integrity sha512-0mOBGkhiZpokhHg64dKHq8eNHuo6wFfJMJjjVeKBa4TjA4rJFXhjT529QisSKLxSRxVodKZX2ozawng2B8cKnQ==
   dependencies:
-    lodash "^4.17.4"
-    prop-types "^15.6.0"
+    lodash "^4.17.11"
+    prop-types "^15.7.2"
 
 "@jest/console@^24.7.1":
   version "24.7.1"
