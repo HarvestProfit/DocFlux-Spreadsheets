@@ -64,6 +64,29 @@ describe('Table', () => {
       expect(newWorkbook.Sheets.Test.B2.t).toBe('s');
     });
 
+    it('should autodetect numbers', () => {
+      const workbook = XLSX.utils.book_new();
+      const component = DocFlux.render(
+        <table>
+          <tname>Test</tname>
+          <thead>
+            <th>NotZero</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>,
+        Parser,
+      );
+
+      const newWorkbook = DocFlux.transform(component, workbook);
+      // expect(newWorkbook.SheetNames[0]).toBe('Test');
+      // expect(newWorkbook.Sheets.Test.A1.v).toBe('Number');
+      expect(newWorkbook.Sheets.Test.A2.v).toBe('');
+    });
+
     it('should create a document from a table with a generated name', () => {
       const workbook = XLSX.utils.book_new();
       const component = DocFlux.render(
