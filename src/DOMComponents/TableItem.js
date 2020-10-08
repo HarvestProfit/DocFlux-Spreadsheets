@@ -19,6 +19,7 @@ export default class TableItem extends DOMComponent {
   }
 
   static transform(DOM) {
-    return DOM;
+    const val = isNaN(DOM) ? DOM : Number(DOM) // Convert strings to numeric values so excel can format them as numbers
+    return val;
   }
 }
