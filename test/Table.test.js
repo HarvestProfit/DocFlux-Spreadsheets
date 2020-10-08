@@ -56,12 +56,12 @@ describe('Table', () => {
       const newWorkbook = DocFlux.transform(component, workbook);
       expect(newWorkbook.SheetNames[0]).toBe('Test');
       expect(newWorkbook.Sheets.Test.A1.v).toBe('Number');
-      expect(newWorkbook.Sheets.Test.A2.v).toBe('55');
+      expect(newWorkbook.Sheets.Test.A2.v).toBe(55);
       expect(newWorkbook.Sheets.Test.A2.t).toBe('n');
 
       expect(newWorkbook.Sheets.Test.B1.v).toBe('Not a Number');
       expect(newWorkbook.Sheets.Test.B2.v).toBe('a1 steak sauce');
-      expect(newWorkbook.Sheets.Test.A2.t).toBe('s');
+      expect(newWorkbook.Sheets.Test.B2.t).toBe('s');
     });
 
     it('should create a document from a table with a generated name', () => {
@@ -225,7 +225,7 @@ describe('Table', () => {
 
       const newWorkbook = DocFlux.transform(component, workbook);
       expect(newWorkbook.Sheets.Table.A1.v).toBe('');
-      expect(newWorkbook.Sheets.Table.A2.v).toBe('1');
+      expect(newWorkbook.Sheets.Table.A2.v).toBe(1);
     });
 
     it('should create a document with a combination of values', () => {
