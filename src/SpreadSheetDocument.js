@@ -1,5 +1,5 @@
 import saveAs from 'save-as';
-import XLSX from 'xlsx';
+import * as XLSX from 'xlsx';
 import { Document } from '@harvest-profit/doc-flux';
 import Parser from './Parser';
 

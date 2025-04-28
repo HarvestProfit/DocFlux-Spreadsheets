@@ -1,5 +1,4 @@
-
-import XLSX from 'xlsx';
+import * as XLSX from 'xlsx';
 import PropTypes from 'prop-types';
 import { DOMComponent } from '@harvest-profit/doc-flux';
 import TableHeader from './TableHeader';
