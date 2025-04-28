@@ -1,5 +1,5 @@
 import saveAs from 'save-as';
-import * as XLSX from 'xlsx';
+import { write, utils } from 'xlsx';
 import { Document } from '@harvest-profit/doc-flux';
 import Parser from './Parser';
 
@@ -14,7 +14,7 @@ class GeneratedDocument {
     const wopts = { bookType, type: 'array' };
     this.filename = filename;
     this.extension = bookType;
-    this.doc = XLSX.write(doc, wopts);
+    this.doc = write(doc, wopts);
   }
 
   /**
@@ -40,7 +40,7 @@ export default class SpreadSheetDocument extends Document {
     return new GeneratedDocument(doc, this.documentSettings(props));
   }
   static createBuilder() {
-    return XLSX.utils.book_new();
+    return utils.book_new();
   }
 
   static parser = Parser;

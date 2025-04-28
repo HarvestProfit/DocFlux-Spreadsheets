@@ -1,4 +1,4 @@
-import * as XLSX from 'xlsx';
+import { utils } from 'xlsx';
 import PropTypes from 'prop-types';
 import { DOMComponent } from '@harvest-profit/doc-flux';
 import TableHeader from './TableHeader';
@@ -71,7 +71,7 @@ export default class Table extends DOMComponent {
       sheetName = createSheetName(sheetName, 2);
     }
 
-    const worksheet = XLSX.utils.aoa_to_sheet(table);
+    const worksheet = utils.aoa_to_sheet(table);
 
     changedWorkBook.SheetNames.push(sheetName);
     changedWorkBook.Sheets[sheetName] = worksheet;
