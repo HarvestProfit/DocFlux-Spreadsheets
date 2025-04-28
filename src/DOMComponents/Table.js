@@ -1,4 +1,4 @@
-import _ from 'lodash';
+
 import XLSX from 'xlsx';
 import PropTypes from 'prop-types';
 import { DOMComponent } from '@harvest-profit/doc-flux';
@@ -27,9 +27,9 @@ export default class Table extends DOMComponent {
 
     let table = [];
 
-    const tableHeader = _.find(DOMValue, comp => comp.ref instanceof TableHeader);
-    const tableBody = _.find(DOMValue, comp => comp.ref instanceof TableBody);
-    const tableName = _.find(DOMValue, comp => comp.ref instanceof TableName);
+    const tableHeader = DOMValue.find(comp => comp.ref instanceof TableHeader);
+    const tableBody = DOMValue.find(comp => comp.ref instanceof TableBody);
+    const tableName = DOMValue.find(comp => comp.ref instanceof TableName);
 
     if (tableHeader) {
       table.push(tableHeader.ref.constructor.transform(tableHeader.value));

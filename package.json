@@ -64,7 +64,6 @@
   },
   "dependencies": {
     "@harvest-profit/doc-flux": "^1.1.1",
-    "lodash": "^4.17.20",
     "prop-types": "^15.7.2",
     "save-as": "^0.1.8",
     "xlsx": "^0.18.0"
